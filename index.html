@@ -1,193 +1,499 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-IN">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>SPARSH | Premium Customized Paper Bags & Brand Packaging</title>
-  <meta name="description"
-    content="SPARSH creates premium customized paper bags designed around your brand. Custom printing, premium finishes and packaging solutions for modern businesses.">
-  <meta property="og:title" content="SPARSH | Carry Your Brand With a Touch">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&family=Pinyon+Script&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SPARSH Carry Bags | Custom Printed Paper Bags for Business</title>
+    <meta name="description"
+      content="SPARSH Carry Bags supplies plain and custom-printed kraft paper bags for retailers, bakeries, boutiques and wholesalers. Share your requirement for a bulk quote.">
+    <meta name="theme-color" content="#102B20">
+    <link rel="canonical" href="https://sparshcarrybags.in/">
 
-<body>
-<!-- EDIT GUIDE: phone numbers appear in the CONTACT section and FOOTER below. Search "9054837242", "9978327241" and "sparshcarrybags" to change them everywhere (also in script.js). -->
-  <nav id="nav" aria-label="Main">
-    <div class="wrap"><a class="logo" href="#home" aria-label="SPARSH home"><b>S</b>SPARSH</a>
-      <div class="links"><a class="on" href="#home">Home</a><a href="#about">About</a><a href="#custom">Custom
-          Bags</a><a href="#process">Our Process</a><a href="#industries">Industries</a><a
-          href="#contact">Contact</a><a class="btn wa" href="#">Create Your Bag</a></div>
-      <button class="burger" id="bg" aria-label="Open menu"
-        aria-expanded="false"><span></span><span></span><span></span></button>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SPARSH Carry Bags">
+    <meta property="og:title" content="SPARSH Carry Bags | Your Brand. Our Bag.">
+    <meta property="og:description"
+      content="Premium paper bags, personalised for your business. Plain and custom-printed options for bulk buyers.">
+    <meta property="og:url" content="https://sparshcarrybags.in/">
+    <meta property="og:image" content="https://sparshcarrybags.in/assets/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/logo/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+
+    <link rel="preload" href="assets/fonts/playfair-display-latin-800-normal.woff2" as="font" type="font/woff2"
+      crossorigin>
+    <link rel="preload" href="assets/fonts/manrope-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/logo/logo.webp" as="image" type="image/webp">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SPARSH Carry Bags",
+    "url": "https://sparshcarrybags.in",
+    "logo": "https://sparshcarrybags.in/assets/logo/logo.png",
+    "slogan": "Carry Your Brand With a Touch",
+    "contactPoint": [{ "@type": "ContactPoint", "telephone": "+91-9054837242", "contactType": "sales", "availableLanguage": ["English", "Hindi"] }]
+  }
+  </script>
+  </head>
+
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="announce" role="note">
+      <p>Custom logo printing <span aria-hidden="true">·</span> Plain &amp; printed paper bags <span
+          aria-hidden="true">·</span> Bulk enquiries welcome</p>
+      <a href="#enquiry" data-wa-link
+        data-wa-msg="Hello SPARSH Carry Bags, I would like to make a bulk enquiry.">WhatsApp <span
+          data-config="whatsappDisplay"></span></a>
     </div>
-  </nav>
-  <div class="panel" id="pn" aria-hidden="true"><a style="--i:0" href="#home">Home</a><a style="--i:1"
-      href="#about">About</a><a style="--i:2" href="#custom">Custom Bags</a><a style="--i:3"
-      href="#process">Our Process</a><a style="--i:4" href="#industries">Industries</a><a style="--i:5"
-      href="#contact">Contact</a><a class="btn wa" style="--i:6" href="#">Start Your Branding <i>→</i></a>
-  </div>
 
-  <main>
-    <header class="hero" id="home">
-      <div class="wrap">
-        <div>
-          <p class="label">Premium Custom Paper Bags</p>
-          <h1>Your Brand.<br><em>Carried</em> Beautifully.</h1>
-          <p class="d">From boutique stores to growing brands, SPARSH creates custom paper bags that turn
-            everyday packaging into a powerful brand experience.</p>
-          <div class="ctas"><a class="btn wa" href="#">Create Your Custom Bag <i>→</i></a><a class="btn ghost"
-              style="color:var(--forest)" href="#collection">See Our Collection</a></div>
-          <p class="script">Designed for your brand. Crafted for your customers.</p>
-        </div>
-        <div class="trio" id="hb" role="img"
-          aria-label="Three SPARSH paper bags in forest green, ivory and kraft"></div>
+    <header class="site-header" id="siteHeader">
+      <div class="progress" id="progress" aria-hidden="true"></div>
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="SPARSH Carry Bags, home">
+          <img src="assets/logo/logo.webp" alt="" width="56" height="56" data-config-src="logo">
+          <span class="brand-text"><strong>SPARSH</strong><em>Carry Bags</em></span>
+        </a>
+
+        <nav class="primary-nav" id="primaryNav" aria-label="Main">
+          <ul>
+            <li><a href="#top">Home</a></li>
+            <li class="has-sub">
+              <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="productMenu">Products <svg
+                  class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-chevron-down" />
+                </svg></button>
+              <ul class="sub" id="productMenu" data-product-menu></ul>
+            </li>
+            <li><a href="#customization">Customization</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#bulk-ordering">Bulk Ordering</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+          <a class="btn btn-gold nav-cta" href="#enquiry">Get Bulk Quote</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="primaryNav"
+          aria-label="Open menu">
+          <svg class="icon icon-open" aria-hidden="true">
+            <use href="assets/icons/sprite.svg#i-menu" />
+          </svg>
+          <svg class="icon icon-close" aria-hidden="true">
+            <use href="assets/icons/sprite.svg#i-x" />
+          </svg>
+        </button>
       </div>
     </header>
 
-    <section class="story" id="about">
-      <div class="wrap rev">
-        <p class="label">A bag is more than a bag</p>
-        <h2>It is the first thing your customer carries after experiencing your brand.</h2>
-        <p>We don't just manufacture paper bags. We help businesses carry their brand physically into the
-          hands of their customers.</p>
-      </div>
-    </section>
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow rise" style="--d:0">Premium Paper Packaging</p>
+            <h1 id="hero-title" class="hero-title">
+              <span class="rise" style="--d:1">YOUR BRAND.</span>
+              <span class="rise gold" style="--d:2">OUR BAG.</span>
+            </h1>
+            <p class="hero-sub rise" style="--d:3">Premium Paper Bags. Personalized for Your Business.</p>
+            <p class="hero-lead rise" style="--d:3">Premium paper bags designed around your brand. Choose your size,
+              paper, handle, and custom printing to create packaging your customers remember.</p>
+            <div class="cta-row rise" style="--d:4">
+              <a class="btn btn-gold" href="#enquiry">Get a Bulk Quote <svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-arrow-right" />
+                </svg></a>
+              <a class="btn btn-outline" href="#products">Explore Our Bags</a>
+            </div>
+            <ul class="trust rise" style="--d:5">
+              <li><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-layers" />
+                </svg>Plain &amp; Custom Printed Options</li>
+              <li><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-package-check" />
+                </svg>Bulk Order Enquiries</li>
+              <li><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-ruler" />
+                </svg>Custom Sizes Available <small>(subject to confirmation)</small></li>
+            </ul>
+          </div>
 
-    <section class="sig" id="sig" aria-label="From plain bag to branded bag">
-      <div class="stick">
+          <div class="hero-stage reveal-img">
+            <span class="ring ring-1" aria-hidden="true"></span>
+            <span class="ring ring-2" aria-hidden="true"></span>
+            <canvas class="stage-canvas" id="heroCanvas" role="img"
+              aria-label="3D preview of a kraft paper bag printed with the SPARSH logo. Drag to rotate."></canvas>
+            <div class="stage-art" data-bag="trio" data-label="Kraft paper bags printed with the SPARSH logo"></div>
+            <p class="stage-note">Drag to rotate &middot; Preview mockup</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Premium Kraft Paper</span><span>Custom Logo &amp; Brand Printing</span><span>Plain &amp; Printed
+            Bags</span><span>Bulk Order Enquiries</span><span>Carry Your Brand With a Touch</span>
+          <span>Premium Kraft Paper</span><span>Custom Logo &amp; Brand Printing</span><span>Plain &amp; Printed
+            Bags</span><span>Bulk Order Enquiries</span><span>Carry Your Brand With a Touch</span>
+        </div>
+      </div>
+
+
+      <!-- VALUE PROPOSITION -->
+      <section class="section value" aria-labelledby="value-title">
+        <div class="container">
+          <header class="section-head center">
+            <p class="eyebrow">Why SPARSH</p>
+            <h2 id="value-title">Packaging that carries your name</h2>
+            <p>Whether you need a few hundred plain bags or a fully branded run, SPARSH helps you choose and confirm the
+              right paper bag for your business.</p>
+          </header>
+          <ul class="value-grid" data-render="valueProps"></ul>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="section products" id="products" aria-labelledby="products-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="eyebrow">The Collection</p>
+            <h2 id="products-title">Paper bags for every counter</h2>
+            <p>Pick a bag type to start your enquiry. Customisation options are subject to confirmation, and no fixed
+              prices or specifications are listed here because they depend on your requirement.</p>
+          </header>
+          <div class="product-grid" data-render="products"></div>
+        </div>
+      </section>
+
+      <!-- BAG STUDIO -->
+      <section class="section studio" id="customization" aria-labelledby="studio-title">
+        <div class="container">
+          <div class="studio-grid">
+            <div class="studio-panel">
+              <p class="eyebrow">Bag Studio</p>
+              <h2 id="studio-title">See how your brand will look</h2>
+              <p class="lead">Turn the bag, switch the style and pick a paper look. When you are happy, send us your
+                logo on WhatsApp and we confirm the final printing with you.</p>
+
+              <fieldset class="ctrl">
+                <legend>1. Bag type</legend>
+                <div class="pills">
+                  <label><input type="radio" name="studioType" value="handle" checked><span>Handle Bag</span></label>
+                  <label><input type="radio" name="studioType" value="sos"><span>SOS Bag</span></label>
+                  <label><input type="radio" name="studioType" value="vbottom"><span>V-Bottom Bag</span></label>
+                  <label><input type="radio" name="studioType" value="boutique"><span>Boutique Bag</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="ctrl">
+                <legend>2. Paper look</legend>
+                <div class="swatches">
+                  <label><input type="radio" name="studioPaper" value="kraft" checked><i
+                      class="sw sw-kraft"></i><span>Natural Kraft</span></label>
+                  <label><input type="radio" name="studioPaper" value="white"><i class="sw sw-white"></i><span>Ivory
+                      White</span></label>
+                  <label><input type="radio" name="studioPaper" value="forest"><i class="sw sw-forest"></i><span>Forest
+                      Green</span></label>
+                </div>
+              </fieldset>
+
+              <p class="note on-dark-note"><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-circle-alert" />
+                </svg>This is a preview with the SPARSH logo. Printing methods, colours, sizes and available papers
+                depend on your final requirements and are confirmed with you.</p>
+              <a class="btn btn-gold" id="studioCta" href="#enquiry" data-wa-link
+                data-wa-msg="Hello SPARSH Carry Bags, I would like to discuss a custom printed bag.">Discuss This Bag
+                <svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-arrow-right" />
+                </svg></a>
+            </div>
+
+            <div class="studio-stage">
+              <div class="studio-canvas-wrap">
+                <canvas id="studioCanvas" role="img"
+                  aria-label="Interactive 3D bag preview. Drag or use the arrow keys to rotate."></canvas>
+                <div class="studio-fallback" id="studioFallback" hidden>3D preview needs a browser with WebGL. You can
+                  still send us your requirement below.</div>
+              </div>
+              <div class="stage-tools">
+                <button class="round-btn" type="button" id="rotL" aria-label="Rotate left"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#i-arrow-right"
+                      style="transform-origin:center;transform:scaleX(-1)" />
+                  </svg></button>
+                <span>Drag to rotate</span>
+                <button class="round-btn" type="button" id="rotR" aria-label="Rotate right"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#i-arrow-right" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+
+          <ol class="studio-steps" data-render="customSteps" aria-label="How customization works"></ol>
+        </div>
+      </section>
+
+      <!-- INDUSTRIES -->
+      <section class="section industries" id="industries" aria-labelledby="ind-title">
+        <div class="container">
+          <header class="section-head center">
+            <p class="eyebrow">Industries We Serve</p>
+            <h2 id="ind-title">One bag style does not fit every business</h2>
+            <p>From bakery counters to boutique shelves, tell us how you sell and we will help you shortlist the right
+              bag.</p>
+          </header>
+          <ul class="industry-grid" data-render="industries"></ul>
+        </div>
+      </section>
+
+      <!-- BULK ORDERING -->
+      <section class="section process" id="bulk-ordering" aria-labelledby="process-title">
+        <div class="container">
+          <header class="section-head center on-dark">
+            <p class="eyebrow">Bulk Ordering</p>
+            <h2 id="process-title">How bulk ordering works</h2>
+          </header>
+          <ol class="timeline" data-render="orderSteps"></ol>
+          <p class="process-note">Order acceptance, pricing, production and delivery are confirmed individually for each
+            requirement.</p>
+        </div>
+      </section>
+
+      <!-- BRAND STORY -->
+      <section class="section story" aria-labelledby="story-title">
+        <div class="container story-grid">
+          <div class="story-copy">
+            <p class="eyebrow">The SPARSH Idea</p>
+            <h2 id="story-title">Packaging Is More Than a Bag.</h2>
+            <p>Your bag is the last thing a customer touches and the first thing they carry out into the street. A
+              well-chosen paper bag with your name on it turns every purchase into a small moment of your brand.</p>
+            <p>Consistent, customised packaging helps customers recognise you at the counter and beyond. That is the
+              idea behind <em>Carry Your Brand With a Touch</em>.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-circle-check" />
+                </svg>Your logo and message on the bag</li>
+              <li><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-circle-check" />
+                </svg>Natural kraft paper look</li>
+              <li><svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-circle-check" />
+                </svg>One point of contact from enquiry to confirmation</li>
+            </ul>
+          </div>
+          <div class="story-visual reveal-img">
+            <span class="frame" aria-hidden="true"></span>
+            <div class="story-art">
+              <div class="snap" data-snap="story" data-alt="Kraft paper handle bag printed with the SPARSH logo"
+                data-fallback-bag="handle"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENQUIRY -->
+      <section class="section enquiry" id="enquiry" aria-labelledby="enq-title">
+        <div class="container enquiry-grid">
+          <aside class="enquiry-aside">
+            <p class="eyebrow">Bulk Enquiry</p>
+            <h2 id="enq-title">Tell us what you need</h2>
+            <p>Fill in the form and send it to us on WhatsApp or email. We will come back with questions, specifications
+              and a quotation.</p>
+            <ul class="aside-list">
+              <li><span class="n">1</span>
+                <p>Fill the form below</p>
+              </li>
+              <li><span class="n">2</span>
+                <p>Choose WhatsApp or email</p>
+              </li>
+              <li><span class="n">3</span>
+                <p>Press <strong>Send</strong> in that app to complete your enquiry</p>
+              </li>
+            </ul>
+            <p class="aside-contact">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#i-phone" />
+              </svg>
+              <a href="#enquiry" data-wa-link
+                data-wa-msg="Hello SPARSH Carry Bags, I would like to make a bulk enquiry."><span
+                  data-config="whatsappDisplay"></span></a>
+            </p>
+          </aside>
+
+          <form class="enquiry-form" id="enquiryForm" novalidate aria-describedby="formIntro">
+            <p id="formIntro" class="form-intro">Fields marked <span aria-hidden="true">*</span><span
+                class="sr-only">with an asterisk</span> are required.</p>
+            <div class="field">
+              <label for="f-name">Full Name <span aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+              <p class="err" id="e-name" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="f-company">Company / Business Name <span aria-hidden="true">*</span></label>
+              <input id="f-company" name="company" type="text" autocomplete="organization" required
+                aria-describedby="e-company">
+              <p class="err" id="e-company" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone Number <span aria-hidden="true">*</span></label>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                placeholder="e.g. 98765 43210" required aria-describedby="e-phone">
+              <p class="err" id="e-phone" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email Address <small>(optional)</small></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email">
+              <p class="err" id="e-email" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="f-product">Product Type <span aria-hidden="true">*</span></label>
+              <select id="f-product" name="product" required aria-describedby="e-product"></select>
+              <p class="err" id="e-product" role="alert"></p>
+            </div>
+            <fieldset class="field radios" aria-describedby="e-print">
+              <legend>Plain or Printed <span aria-hidden="true">*</span></legend>
+              <label><input type="radio" name="print" value="Plain"><span>Plain</span></label>
+              <label><input type="radio" name="print" value="Printed"><span>Printed</span></label>
+              <label><input type="radio" name="print" value="Not sure"><span>Not sure</span></label>
+              <p class="err" id="e-print" role="alert"></p>
+            </fieldset>
+            <div class="field">
+              <label for="f-qty">Estimated Quantity <span aria-hidden="true">*</span></label>
+              <input id="f-qty" name="quantity" type="number" inputmode="numeric" min="1" step="1"
+                placeholder="e.g. 1000" required aria-describedby="e-qty">
+              <p class="err" id="e-qty" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="f-size">Required Bag Size <small>(optional)</small></label>
+              <input id="f-size" name="size" type="text" placeholder="e.g. 10 x 12 x 5 inches"
+                aria-describedby="e-size">
+              <p class="err" id="e-size" role="alert"></p>
+            </div>
+            <div class="field full">
+              <label for="f-notes">Additional Requirements <small>(optional)</small></label>
+              <textarea id="f-notes" name="notes" rows="4"
+                placeholder="Handle type, colours, artwork, delivery city, anything else"></textarea>
+            </div>
+
+            <div class="form-actions full">
+              <button class="btn btn-gold" type="submit" id="sendWa" data-action="whatsapp"><svg class="icon"
+                  aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-whatsapp" />
+                </svg>Send Enquiry on WhatsApp</button>
+              <button class="btn btn-outline" type="button" id="sendMail" data-action="email"><svg class="icon"
+                  aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#i-mail" />
+                </svg>Send by Email</button>
+            </div>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite" tabindex="-1" hidden></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section faq" id="faq" aria-labelledby="faq-title">
+        <div class="container faq-grid">
+          <header class="section-head">
+            <p class="eyebrow">Questions</p>
+            <h2 id="faq-title">Frequently asked questions</h2>
+            <p>Exact specifications and order terms are always confirmed with you before an order is accepted.</p>
+          </header>
+          <div class="accordion" data-render="faqs"></div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="final-cta" aria-labelledby="cta-title">
+        <div class="container">
+          <span class="gold-leaf" aria-hidden="true"></span>
+          <h2 id="cta-title">LET'S CREATE YOUR BRAND'S NEXT BAG.</h2>
+          <p>Share your requirement and let's discuss the right paper packaging for your business.</p>
+          <div class="cta-row center">
+            <a class="btn btn-gold" href="#enquiry">Request a Bulk Quote</a>
+            <a class="btn btn-ghost" href="#enquiry" data-wa-link
+              data-wa-msg="Hello SPARSH Carry Bags, I would like to discuss my packaging requirement."><svg class="icon"
+                aria-hidden="true">
+                <use href="assets/icons/sprite.svg#i-whatsapp" />
+              </svg>Chat on WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="f-brand">
+          <img src="assets/logo/logo.webp" alt="SPARSH Carry Bags logo" width="96" height="96" loading="lazy"
+            data-config-src="logo">
+          <p class="tag" data-config="tagline"></p>
+        </div>
+        <nav aria-label="Products">
+          <h3>Products</h3>
+          <ul data-footer-products></ul>
+        </nav>
+        <nav aria-label="Quick links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#customization">Customization</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#bulk-ordering">Bulk Ordering</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#enquiry">Bulk Enquiry</a></li>
+          </ul>
+        </nav>
         <div>
-          <p class="label">The SPARSH transformation</p>
-          <h2>From a simple bag<br>to your brand in motion.</h2>
-          <p class="stage" id="stg" aria-live="off">Plain kraft bag</p>
-          <div class="bar"><i id="pr"></i></div>
-        </div>
-        <div id="sigBag" role="img" aria-label="Bag transforming into a branded bag"></div>
-      </div>
-    </section>
-
-    <section class="show" id="custom">
-      <div class="wrap">
-        <p class="label">Make it yours</p>
-        <h2>Choose your finish.</h2>
-        <div class="grid">
-          <div class="stage">
-            <div id="showBag"></div>
-          </div>
-          <div>
-            <h3 id="vn">Forest Green</h3>
-            <p id="vd">Premium matte finish</p>
-            <div class="sw" id="sw" role="group" aria-label="Bag colour"></div><a class="btn wa"
-              href="#">Customize This Bag <i>→</i></a>
-            <p class="hint">Tap a colour to explore.</p>
-          </div>
+          <h3>Contact</h3>
+          <ul class="contact-list">
+            <li><svg class="icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#i-whatsapp" />
+              </svg><a href="#enquiry" data-wa-link
+                data-wa-msg="Hello SPARSH Carry Bags, I would like to make an enquiry."><span
+                  data-config="whatsappDisplay"></span></a></li>
+            <li data-if="email"><svg class="icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#i-mail" />
+              </svg><a data-mail-link href="#enquiry"><span data-config="email"></span></a></li>
+            <li><svg class="icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#i-globe" />
+              </svg><a data-site-link href="#top"><span data-config="websiteHost"></span></a></li>
+            <li data-if="address"><svg class="icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#i-store" />
+              </svg><span data-config="address"></span></li>
+          </ul>
+          <ul class="social" data-social aria-label="Social media"></ul>
         </div>
       </div>
-    </section>
-
-    <section class="proc" id="process">
-      <div class="wrap">
-        <p class="label">Your brand. your bag.</p>
-        <h2>Six steps, one beautiful result.</h2>
-        <ol id="steps"></ol>
-        <div class="opts"><span>Logo</span><span>Brand colours</span><span>Size</span><span>Handle
-            type</span><span>Paper finish</span><span>Printing</span><span>Quantity</span></div>
+      <div class="container footer-bottom">
+        <p>&copy; <span id="year"></span> <span data-config="brandName"></span>. All rights reserved.</p>
+        <a href="privacy.html">Privacy Policy</a>
       </div>
-    </section>
+    </footer>
 
-    <section class="ind" id="industries">
-      <div class="wrap">
-        <p class="label">Who we serve</p>
-        <h2 style="color:var(--forest)">Made for brands like yours.</h2>
-        <div class="cards" id="ind"></div>
-      </div>
-    </section>
-
-    <section class="coll" id="collection">
-      <div class="wrap">
-        <p class="label">Premium bag collection</p>
-        <h2 style="color:var(--forest)">Crafted to be carried.</h2>
-        <div class="cards" id="coll"></div>
-      </div>
-    </section>
-
-    <section class="why">
-      <div class="wrap">
-        <p class="label">Why SPARSH</p>
-        <h2 style="color:var(--forest)">Details make the difference.</h2>
-        <div class="g" id="why"></div>
-      </div>
-    </section>
-    <section class="trust">
-      <div class="wrap">
-        <ul class="rev">
-          <li>Quality-focused production</li>
-          <li>Custom branding</li>
-          <li>Professional communication</li>
-          <li>Multiple bag styles</li>
-          <li>Business-focused packaging</li>
-          <li>Reliable delivery</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="quote">
-      <div class="wrap rev">
-        <h2>Your packaging speaks<br>before you do.</h2>
-        <p class="script">Make sure it says something worth remembering.</p>
-      </div>
-    </section>
-
-    <section class="cta" id="cta"><svg class="o" viewBox="0 0 200 260" fill="none" stroke="#C9A24A"
-        stroke-width="1.5" aria-hidden="true">
-        <path d="M30 70h140v170H30zM70 70V45q30-40 60 0v25" />
+    <a class="wa-fab" href="#enquiry" data-wa-link
+      data-wa-msg="Hello SPARSH Carry Bags, I would like to make an enquiry." aria-label="Chat on WhatsApp">
+      <svg class="icon" aria-hidden="true">
+        <use href="assets/icons/sprite.svg#i-whatsapp" />
       </svg>
-      <div class="wrap">
-        <h2>Ready to carry your brand?</h2>
-        <p>Let's create paper bags that look as good as your brand.</p>
-        <div class="ctas"><a class="btn wa" href="#">Start Your Custom Bag <i>→</i></a><a class="btn ghost"
-            href="#contact">Talk to SPARSH</a></div>
-      </div>
-    </section>
+    </a>
+    <button class="to-top" id="toTop" type="button" aria-label="Back to top" hidden>
+      <svg class="icon" aria-hidden="true">
+        <use href="assets/icons/sprite.svg#i-arrow-up" />
+      </svg>
+    </button>
 
-    <section class="contact" id="contact">
-      <div class="wrap">
-        <p class="label">SPARSH</p>
-        <h2 style="color:var(--forest)">Let's build your brand.</h2>
-        <div class="g">
-          <div class="person"><span class="script">Swati</span><a class="n"
-              href="tel:+919054837242">9054837242</a><a class="btn" href="https://wa.me/919054837242"
-              data-w="919054837242">WhatsApp</a><a class="btn ghost" href="tel:+919054837242">Call</a></div>
-          <div class="person"><span class="script">Harsh</span><a class="n"
-              href="tel:+919978327241">9978327241</a><a class="btn" href="https://wa.me/919978327241"
-              data-w="919978327241">WhatsApp</a><a class="btn ghost" href="tel:+919978327241">Call</a></div>
-        </div>
-        <p class="note"><a class="btn ghost" style="color:var(--forest)"
-            href="mailto:sparshcarrybags@gmail.com">✉ sparshcarrybags@gmail.com</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap"><a class="logo" href="#home"><b>S</b>SPARSH</a>
-      <p class="script">Carry Your Brand With a Touch</p>
-      <nav2><a href="#home">Home</a><a href="#about">About</a><a href="#custom">Custom Bags</a><a
-          href="#industries">Industries</a><a href="#contact">Contact</a></nav2>
-      <p>Swati · 9054837242 &nbsp;|&nbsp; Harsh · 9978327241</p>
-      <p><a href="mailto:sparshcarrybags@gmail.com">sparshcarrybags@gmail.com</a></p><small>© 2026 SPARSH. All
-        Rights Reserved.</small>
-    </div>
-  </footer>
-  <a class="btn sticky wa" id="stk" href="#">Create Your Bag <i>→</i></a>
-
-  <script src="script.js"></script>
-</body>
+    <noscript>
+      <p class="noscript">Please enable JavaScript to see the full catalogue. You can always reach us on WhatsApp: +91
+        90548 37242.</p>
+    </noscript>
+    <script type="module" src="js/main.js"></script>
+  </body>
 
 </html>

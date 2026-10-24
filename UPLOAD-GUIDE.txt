@@ -1,0 +1,27 @@
+HOSTINGER PAR UPLOAD KAISE KAREIN
+=================================
+1. Hostinger hPanel -> Websites -> Manage -> File Manager kholo.
+2. public_html folder kholo. Agar usme default.php ya purani files hain to delete kar do.
+3. Upload icon se sparsh-website.zip upload karo, phir zip par right-click -> Extract.
+   Extract ke baad index.html seedha public_html ke andar dikhni chahiye
+   (kisi aur folder ke andar nahi).
+4. Domain par HTTPS (SSL) on rakho. Phir sparshcarrybags.in kholo.
+
+BAAD MEIN KYA BADLNA HAI
+------------------------
+- WhatsApp number / email  -> js/config.js
+- Products, FAQ ka text    -> js/content.js
+- Colors                   -> css/styles.css (sabse upar :root)
+- Logo                     -> assets/logo/ (same naam se replace karo)
+- Real product photo       -> assets/images/ me daalo, phir js/content.js me image: "assets/images/naam.jpg" likho
+
+FILES KA MATLAB
+---------------
+index.html   : main page ka structure
+privacy.html : privacy policy page
+css/styles.css : poora design
+js/config.js   : contact details (yahi sabse zaruri file)
+js/content.js  : text content
+js/bags.js     : bag mockup drawings
+js/form.js     : enquiry form + WhatsApp message
+js/main.js     : menu, FAQ, animations, sab kuch jodta hai
