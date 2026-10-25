@@ -39,8 +39,16 @@ function makeCanvas(w, h) {
   return c;
 }
 
-/** Kraft-like paper: mottling, fibres, flecks */
+/** Kraft-like paper: mottling, fibres, flecks (generated once per paper/size, then copied) */
+const paperCache = new Map();
 function paperCanvas(base, w, h, seed, flecks = 1) {
+  const key = `${base}|${w}|${h}|${seed}`;
+  let src = paperCache.get(key);
+  if (!src) { src = paperRaw(base, w, h, seed, flecks); paperCache.set(key, src); }
+  const c = makeCanvas(w, h); c.getContext("2d").drawImage(src, 0, 0);
+  return c;
+}
+function paperRaw(base, w, h, seed, flecks = 1) {
   const c = makeCanvas(w, h), g = c.getContext("2d"), r = rngFor(seed);
   g.fillStyle = base; g.fillRect(0, 0, w, h);
   const s = Math.max(w, h);
@@ -312,7 +320,7 @@ export class BagStage {
     this.canvas = canvas;
     this.opts = { interactive: false, autoRotate: false, preserve: false, ...opts };
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: this.opts.preserve, powerPreference: "high-performance" });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
@@ -327,7 +335,7 @@ export class BagStage {
     const hemi = new THREE.HemisphereLight(0xfff4e2, 0xb48a5a, 1.15);
     const key = new THREE.DirectionalLight(0xfff0d8, 2.5);
     key.position.set(-1.8, 5.2, 2.6); key.castShadow = true;
-    key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 9; key.shadow.bias = -0.0004; key.shadow.normalBias = 0.02;
+    key.shadow.mapSize.set(this.opts.interactive ? 1024 : 2048, this.opts.interactive ? 1024 : 2048); key.shadow.radius = 9; key.shadow.bias = -0.0004; key.shadow.normalBias = 0.02;
     Object.assign(key.shadow.camera, { left: -3.4, right: 3.4, top: 3.4, bottom: -3.4, near: 0.5, far: 16 });
     const fill = new THREE.DirectionalLight(0xdfe8ff, 0.45); fill.position.set(3, 1.5, 2.5);
     const rim = new THREE.DirectionalLight(0xffe2b0, 0.9); rim.position.set(1.5, 2.5, -3.5);
@@ -404,7 +412,8 @@ export class BagStage {
 
   update(dt) {
     const idle = performance.now() - this.lastInteract > 1800;
-    if (this.opts.autoRotate && !this.reduce && !this.dragging && idle) this.targetYaw += dt * 0.42;
+    const ramp = Math.min(1, (performance.now() - (this.rampStart || 0)) / 2200);
+    if (this.opts.autoRotate && !this.reduce && !this.dragging && idle) this.targetYaw += dt * 0.42 * ramp * ramp;
     const k = 1 - Math.pow(0.0006, dt);
     this.yaw += (this.targetYaw - this.yaw) * k;
     this.pitch += (this.targetPitch - this.pitch) * k;
@@ -433,7 +442,7 @@ export class BagStage {
     }
   }
 
-  start() { this.resize(); this.renderOnce(); this.syncLoop(); }
+  start() { this.rampStart = performance.now(); this.resize(); this.renderOnce(); this.syncLoop(); }
 
   toBlobURL(type = "image/png", q = 0.92) {
     return new Promise((res) => this.canvas.toBlob((b) => res(URL.createObjectURL(b)), type, q));

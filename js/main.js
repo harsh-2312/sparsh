@@ -1,5 +1,5 @@
 import { siteConfig, whatsappDisplay, whatsappLink, mailLink } from "./config.js";
-import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js";
+import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3d2";
 import { SHOWCASE, SHOWCASE_ORDER } from "./showcase.js";
 import { bagSVG } from "./bags.js";
 import { initForm } from "./form.js";
@@ -170,16 +170,16 @@ function svgFallback() {
 async function init3D() {
   if (!hasWebGL()) return svgFallback();
   let m;
-  try { m = await import("./bag3d.js"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
+  try { m = await import("./bag3d.js?v=3d2"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
   const logo = await m.loadLogo(siteConfig.logoMark).catch(() => null);
   $(".stage-art")?.remove();
 
-  // Hero: live, auto-rotating bag
+  // Hero: live, auto-rotating bag (fades in once the first frame is drawn)
   const heroCanvas = $("#heroCanvas");
   const hero = new m.BagStage(heroCanvas, { interactive: true, autoRotate: true });
   hero.setSpec({ type: "handle", paper: "kraft", logo });
   hero.start();
-  heroCanvas.parentElement.classList.add("live");
+  requestAnimationFrame(() => requestAnimationFrame(() => heroCanvas.parentElement.classList.add("live")));
 
   // Bag Studio: starts when the section is near the viewport
   const studioWrap = $("#studioCanvas");
@@ -210,23 +210,37 @@ async function init3D() {
     refresh();
   }
 
-  // Product / industry / story images: one off-screen renderer, one image at a time
-  const wanted = SHOWCASE_ORDER.filter((k) => $(`[data-snap="${k}"]`));
-  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 60));
-  const queue = wanted.map((key) => ({ key, spec: { ...SHOWCASE[key], logo: SHOWCASE[key].logo ? logo : null }, yaw: SHOWCASE[key].yaw, pitch: SHOWCASE[key].pitch }));
+  // Product / industry / story images: rendered one at a time, only when near the screen,
+  // and only after the hero is smooth, so the first seconds never stutter.
+  const idle = window.requestIdleCallback ? (fn) => requestIdleCallback(fn, { timeout: 1500 }) : (fn) => setTimeout(fn, 80);
+  const queue = [], seen = new Set();
+  let working = false;
+  const enqueue = (key) => {
+    if (seen.has(key) || !SHOWCASE[key]) return;
+    seen.add(key); queue.push(key);
+    queue.sort((x, y) => SHOWCASE_ORDER.indexOf(x) - SHOWCASE_ORDER.indexOf(y));
+    if (!working) { working = true; idle(next); }
+  };
   const next = async () => {
-    const item = queue.shift();
-    if (!item) return;
+    const key = queue.shift();
+    if (!key) { working = false; return; }
+    const c = SHOWCASE[key];
     try {
-      const urls = await m.renderSnapshots([item], 760, 700);
-      $$(`[data-snap="${item.key}"]`).forEach((el) => {
-        el.innerHTML = `<img src="${urls[item.key]}" alt="${el.dataset.alt || ""}" width="760" height="700" decoding="async">`;
+      const urls = await m.renderSnapshots([{ key, spec: { ...c, logo: c.logo ? logo : null }, yaw: c.yaw, pitch: c.pitch }], 760, 700);
+      $$(`[data-snap="${key}"]`).forEach((el) => {
+        el.innerHTML = `<img src="${urls[key]}" alt="${el.dataset.alt || ""}" width="760" height="700" decoding="async">`;
         requestAnimationFrame(() => el.classList.add("ready"));
       });
-    } catch (e) { console.warn("snapshot failed", item.key, e); }
-    idle(next);
+    } catch (e) { console.warn("snapshot failed", key, e); }
+    setTimeout(() => idle(next), 120);
   };
-  idle(next);
+  setTimeout(() => {
+    if (!("IntersectionObserver" in window)) { SHOWCASE_ORDER.forEach(enqueue); return; }
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { enqueue(e.target.dataset.snap); io.unobserve(e.target); }
+    }), { rootMargin: "700px 0px" });
+    $$("[data-snap]").forEach((el) => io.observe(el));
+  }, 1800);
 }
 
 /* ---------- boot ---------- */

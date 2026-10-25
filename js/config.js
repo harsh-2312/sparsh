@@ -22,7 +22,7 @@ export const siteConfig = {
   // Contact ------------------------------------------------
   whatsappNumber: "9054837242", // local number, no +91 needed
   countryCode: "91",            // used only to build wa.me links
-  email: "",                    // intentionally blank until confirmed
+  email: "sparshcarrybags@gmail.com",                    // intentionally blank until confirmed
   address: "",                  // leave blank until confirmed
 
   // Social links (leave "" to hide) ------------------------
