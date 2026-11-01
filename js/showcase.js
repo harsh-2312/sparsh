@@ -2,12 +2,14 @@
  * Which 3D bag is shown where.
  * key -> { spec, yaw, pitch }.  `logo: true` prints the SPARSH logo, false = plain bag.
  * Cards in the page ask for these keys through  data-snap="key".
- * Change paper ("kraft" | "white" | "forest") or type ("handle" | "sos" | "vbottom" | "boutique") freely.
+ * Change paper ("kraft" | "white" | "forest") or type ("handle" | "shopping" | "shoe" | "jewellery" | "sos" | "boutique") freely.
  */
 export const SHOWCASE = {
   // Product cards
   "p-sos":            { type: "sos",      paper: "kraft",  logo: true,  yaw: -0.55 },
-  "p-v-bottom":       { type: "vbottom",  paper: "kraft",  logo: true,  yaw: 0.55 },
+  "p-shoe":           { type: "shoe",      paper: "kraft",  logo: true,  yaw: 0.5 },
+  "p-jewellery":      { type: "jewellery", paper: "forest", logo: true,  yaw: -0.45 },
+  "p-shopping":       { type: "shopping", paper: "white",  logo: true,  yaw: 0.5 },
   "p-handle":         { type: "handle",   paper: "kraft",  logo: true,  yaw: -0.5 },
   "p-custom-printed": { type: "handle",   paper: "white",  logo: true,  yaw: 0.5 },
   "p-plain-kraft":    { type: "sos",      paper: "kraft",  logo: false, yaw: 0.45 },
@@ -18,13 +20,13 @@ export const SHOWCASE = {
   "i-jewellery":      { type: "jewellery",paper: "forest", logo: true,  yaw: 0.5 },
   "i-cosmetics":      { type: "boutique", paper: "white",  logo: true,  yaw: -0.45 },
   "i-retail":         { type: "shopping", paper: "kraft",  logo: true,  yaw: 0.38 },
-  "i-wholesale":      { type: "vbottom",  paper: "kraft",  logo: true,  yaw: -0.5 },
+  "i-wholesale":      { type: "handle",   paper: "kraft",  logo: true,  yaw: -0.5 },
   // Story section
   "story":            { type: "handle",   paper: "kraft",  logo: true,  yaw: -0.85, pitch: 0.2 },
 };
 
 /** Render order: what the visitor sees first goes first. */
 export const SHOWCASE_ORDER = [
-  "p-sos", "p-v-bottom", "p-handle", "p-custom-printed", "p-plain-kraft", "p-boutique",
+  "p-sos", "p-shopping", "p-handle", "p-shoe", "p-jewellery", "p-custom-printed", "p-plain-kraft", "p-boutique",
   "story", "i-bakery", "i-fashion", "i-jewellery", "i-cosmetics", "i-retail", "i-wholesale",
 ];

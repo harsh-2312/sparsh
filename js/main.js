@@ -1,5 +1,5 @@
 import { siteConfig, whatsappDisplay, whatsappLink, mailLink } from "./config.js";
-import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3d7";
+import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3dA";
 import { SHOWCASE, SHOWCASE_ORDER } from "./showcase.js";
 import { bagSVG } from "./bags.js";
 import { initForm } from "./form.js";
@@ -170,7 +170,7 @@ function svgFallback() {
 async function init3D() {
   if (!hasWebGL()) return svgFallback();
   let m;
-  try { m = await import("./bag3d.js?v=3d7"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
+  try { m = await import("./bag3d.js?v=3dA"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
   const logo = await m.loadLogo(siteConfig.logoMark).catch(() => null);
   $(".stage-art")?.remove();
 
@@ -196,7 +196,7 @@ async function init3D() {
       io.observe(studioWrap);
     } else boot();
 
-    const label = { handle: "Paper Handle Bag", shopping: "Large Shopping Bag", shoe: "Shoe Bag", jewellery: "Jewellery Bag", sos: "SOS Paper Bag", vbottom: "V-Bottom Paper Bag", boutique: "Boutique Paper Bag" };
+    const label = { handle: "Paper Handle Bag", shopping: "Large Shopping Bag", shoe: "Shoe Bag", jewellery: "Jewellery Bag", sos: "SOS Paper Bag", boutique: "Boutique Paper Bag" };
     const paper = { kraft: "Natural Kraft", white: "Ivory White", forest: "Forest Green" };
     const cta = $("#studioCta");
     const refresh = () => {

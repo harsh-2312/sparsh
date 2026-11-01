@@ -17,7 +17,7 @@ import * as THREE from "../assets/vendor/three.module.min.js";
 /* ------------------------------------------------------------------ */
 export const PAPERS = {
   kraft: { label: "Natural Kraft", base: "#C69A68", inner: "#8f6a41", rope: "#B58450", multiply: true },
-  white: { label: "Ivory White", base: "#EDE5D6", inner: "#cfc6b4", rope: "#E2D9C6", multiply: true },
+  white: { label: "Ivory White", base: "#F7F1E6", inner: "#cfc6b4", rope: "#E2D9C6", multiply: true },
   forest: { label: "Forest Green", base: "#17382A", inner: "#0c2017", rope: "#C79F62", multiply: false, ink: "#D7AE70" },
 };
 

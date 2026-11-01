@@ -20,12 +20,12 @@ export const products = [
     alt: "",
   },
   {
-    id: "v-bottom",
-    name: "V-Bottom Paper Bags",
-    bag: "vbottom",
+    id: "shopping",
+    name: "Large Shopping Bags",
+    bag: "handle",
     description:
-      "Classic V-bottom paper bags for light everyday packing, available plain or carrying your branding.",
-    options: ["Plain or printed", "Size on request", "Logo placement"],
+      "Big, sturdy-looking paper shopping bags with rope handles for fashion, footwear, jewellery and gifting counters.",
+    options: ["Plain or printed", "Size on request", "Handle style on request"],
     image: "",
     alt: "",
   },
@@ -36,6 +36,26 @@ export const products = [
     description:
       "Shopping-style paper bags with handles for retail counters, gifting and takeaway orders.",
     options: ["Handle style on request", "Plain or printed", "Size on request"],
+    image: "",
+    alt: "",
+  },
+  {
+    id: "shoe",
+    name: "Shoe & Footwear Bags",
+    bag: "handle",
+    description:
+      "Wide, roomy paper bags with rope handles for shoe stores and footwear counters.",
+    options: ["Plain or printed", "Size on request", "Handle style on request"],
+    image: "",
+    alt: "",
+  },
+  {
+    id: "jewellery",
+    name: "Jewellery & Gift Bags",
+    bag: "boutique",
+    description:
+      "Neat, compact paper bags with ribbon handles for jewellery, gifting and premium counters.",
+    options: ["Plain or printed", "Size on request", "Ribbon colour on request"],
     image: "",
     alt: "",
   },
@@ -112,7 +132,7 @@ export const faqs = [
   },
   {
     q: "Which bag types can I enquire about?",
-    a: "SOS paper bags, V-bottom paper bags, paper handle bags, custom printed bags, plain kraft bags and retail / boutique packaging. If you need something else, just ask.",
+    a: "SOS paper bags, large shopping bags, paper handle bags, custom printed bags, plain kraft bags and retail / boutique packaging. If you need something else, just ask.",
   },
   {
     q: "Can I request a custom size?",
