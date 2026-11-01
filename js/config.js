@@ -22,7 +22,7 @@ export const siteConfig = {
   // Contact ------------------------------------------------
   whatsappNumber: "9054837242", // local number, no +91 needed
   countryCode: "91",            // used only to build wa.me links
-  email: "sparshcarrybags@gmail.com",                    // intentionally blank until confirmed
+  email: "sparshcarrybags@gmail.com", // enquiries are delivered here (see send-enquiry.php)
   address: "",                  // leave blank until confirmed
 
   // Social links (leave "" to hide) ------------------------
@@ -39,7 +39,7 @@ export const siteConfig = {
 
   // Backend-ready hook -------------------------------------
   // If set, the enquiry form also POSTs JSON here (see js/form.js).
-  formEndpoint: "",
+  formEndpoint: "send-enquiry.php", // PHP script that emails the enquiry to the business inbox
 };
 
 /** Digits only, with country code, e.g. 919054837242 */

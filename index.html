@@ -1,7 +1,13 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPARSH Carry Bags | Custom Printed Paper Bags for Business</title>
   <meta name="description" content="SPARSH Carry Bags supplies plain and custom-printed kraft paper bags for retailers, bakeries, boutiques and wholesalers. Share your requirement for a bulk quote.">
   <meta name="theme-color" content="#102B20">
+  <link rel="canonical" href="https://sparshcarrybags.in/">
+
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SPARSH Carry Bags">
   <meta property="og:title" content="SPARSH Carry Bags | Your Brand. Our Bag.">
@@ -19,7 +25,9 @@
   <link rel="preload" href="assets/fonts/playfair-display-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/logo/logo.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="css/styles.css?v=3d2">
+  <link rel="modulepreload" href="js/bag3d.js?v=3d7">
+  <link rel="modulepreload" href="assets/vendor/three.module.min.js">
+  <link rel="stylesheet" href="css/styles.css?v=3d7">
 
   <script type="application/ld+json">
   {
@@ -32,8 +40,8 @@
     "contactPoint": [{ "@type": "ContactPoint", "telephone": "+91-9054837242", "contactType": "sales", "availableLanguage": ["English", "Hindi"] }]
   }
   </script>
-<meta name="claude:viewport-fit-sides" content="cover">
-<div id="top">
+</head>
+<body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="announce" role="note">
@@ -134,6 +142,7 @@
           <p>Pick a bag type to start your enquiry. Customisation options are subject to confirmation, and no fixed prices or specifications are listed here because they depend on your requirement.</p>
         </header>
         <div class="product-grid" data-render="products"></div>
+        <p class="swipe-hint" aria-hidden="true">Swipe to see all bags &rarr;</p>
       </div>
     </section>
 
@@ -144,15 +153,18 @@
           <div class="studio-panel">
             <p class="eyebrow">Bag Studio</p>
             <h2 id="studio-title">See how your brand will look</h2>
-            <p class="lead">Turn the bag, switch the style and pick a paper look. When you are happy, send us your logo on WhatsApp and we confirm the final printing with you.</p>
+            <p class="lead">Turn the bag, switch the style and pick a paper look. When you are happy, upload your own logo to see it on the bag, then send us the file on WhatsApp and we confirm the final printing with you.</p>
 
             <fieldset class="ctrl">
               <legend>1. Bag type</legend>
               <div class="pills">
                 <label><input type="radio" name="studioType" value="handle" checked><span>Handle Bag</span></label>
+                <label><input type="radio" name="studioType" value="shopping"><span>Large Shopping Bag</span></label>
+                <label><input type="radio" name="studioType" value="shoe"><span>Shoe Bag</span></label>
+                <label><input type="radio" name="studioType" value="jewellery"><span>Jewellery Bag</span></label>
+                <label><input type="radio" name="studioType" value="boutique"><span>Boutique Bag</span></label>
                 <label><input type="radio" name="studioType" value="sos"><span>SOS Bag</span></label>
                 <label><input type="radio" name="studioType" value="vbottom"><span>V-Bottom Bag</span></label>
-                <label><input type="radio" name="studioType" value="boutique"><span>Boutique Bag</span></label>
               </div>
             </fieldset>
 
@@ -165,7 +177,22 @@
               </div>
             </fieldset>
 
-            <p class="note on-dark-note"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-circle-alert"/></svg>This is a preview with the SPARSH logo. Printing methods, colours, sizes and available papers depend on your final requirements and are confirmed with you.</p>
+            <fieldset class="ctrl" id="logoCtrl">
+              <legend>3. Try your own logo</legend>
+              <div class="logo-up">
+                <label class="up-btn" for="logoFile"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-upload"/></svg><span id="logoBtnText">Upload your logo</span></label>
+                <input type="file" id="logoFile" accept="image/png,image/jpeg,image/webp" class="sr-only">
+                <button type="button" class="link-btn" id="logoReset" hidden>Back to SPARSH logo</button>
+              </div>
+              <p class="logo-msg" id="logoMsg" role="status" aria-live="polite">PNG, JPG or WebP. Your logo stays on your device and is not uploaded anywhere.</p>
+              <div class="logo-tools" id="logoTools" hidden>
+                <label>Logo size <input type="range" id="logoSize" min="30" max="90" value="58" aria-label="Logo size"></label>
+                <label>Logo position <input type="range" id="logoY" min="32" max="68" value="50" aria-label="Logo position, up or down"></label>
+                <label class="chk"><input type="checkbox" id="logoLabel"><span>Place on a white label</span></label>
+              </div>
+            </fieldset>
+
+            <p class="note on-dark-note"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-circle-alert"/></svg>This is a preview only. Printing methods, colours, sizes and available papers depend on your final requirements and are confirmed with you.</p>
             <a class="btn btn-gold" id="studioCta" href="#enquiry" data-wa-link data-wa-msg="Hello SPARSH Carry Bags, I would like to discuss a custom printed bag.">Discuss This Bag <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-right"/></svg></a>
           </div>
 
@@ -298,9 +325,10 @@
             <textarea id="f-notes" name="notes" rows="4" placeholder="Handle type, colours, artwork, delivery city, anything else"></textarea>
           </div>
 
+          <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <div class="form-actions full">
-            <button class="btn btn-gold" type="submit" id="sendWa" data-action="whatsapp"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"/></svg>Send Enquiry on WhatsApp</button>
-            <button class="btn btn-outline" type="button" id="sendMail" data-action="email"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-mail"/></svg>Send by Email</button>
+            <button class="btn btn-gold" type="submit" id="sendMail" data-action="email"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-mail"/></svg>Send Enquiry</button>
+            <button class="btn btn-outline" type="button" id="sendWa" data-action="whatsapp"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"/></svg>Send on WhatsApp</button>
           </div>
           <div class="form-status" id="formStatus" role="status" aria-live="polite" tabindex="-1" hidden></div>
         </form>
@@ -378,8 +406,24 @@
   </button>
 
   <noscript><p class="noscript">Please enable JavaScript to see the full catalogue. You can always reach us on WhatsApp: +91 90548 37242.</p></noscript>
-  <script type="module" src="js/main.js?v=3d2"></script>
-</div>
+  <script type="module" src="js/main.js?v=3d7"></script>
 
-
-</body></html>
+  <dialog class="thanks" id="thanksModal" aria-labelledby="thanksTitle" aria-describedby="thanksText">
+    <div class="thanks-card">
+      <button class="thanks-x" type="button" data-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-x"/></svg></button>
+      <div class="thanks-seal" aria-hidden="true">
+        <svg viewBox="0 0 52 52"><circle class="ring" cx="26" cy="26" r="23"/><path class="tick" d="M15 27.5l7.5 7.5L37.5 19"/></svg>
+      </div>
+      <p class="thanks-kicker">Enquiry received</p>
+      <h2 id="thanksTitle">Thank you, <span id="thanksName">there</span>!</h2>
+      <p id="thanksText">Your enquiry has reached <strong>SPARSH Carry Bags</strong>. Our team will connect with you shortly to discuss your requirement.</p>
+      <ul class="thanks-sum" id="thanksSum"></ul>
+      <div class="thanks-actions">
+        <a class="btn btn-gold" id="thanksWa" href="#" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"/></svg>Chat on WhatsApp</a>
+        <button class="btn btn-outline" type="button" data-close>Close</button>
+      </div>
+      <p class="thanks-foot">Carry Your Brand With a Touch</p>
+    </div>
+  </dialog>
+</body>
+</html>

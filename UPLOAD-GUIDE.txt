@@ -1,0 +1,17 @@
+HOSTINGER PE UPLOAD KAISE KARE
+1. hPanel -> Websites -> sparshcarrybags.in -> File Manager -> public_html
+2. Purani files delete karo. Is ZIP ko upload karke Extract karo
+   (index.html, send-enquiry.php, _data seedha public_html me dikhe). "Show hidden files" ON rakho.
+3. Ctrl+F5 se cache clear karo.
+
+EMAIL PAKKA CHALNE KE LIYE (ZAROORI) - 5 minute ka kaam:
+ a) hPanel -> Emails -> Email Accounts -> naya mailbox banao: info@sparshcarrybags.in (password yaad rakho)
+ b) File Manager -> public_html/_data/ me jao
+    mail-config.sample.php ki COPY banao aur uska naam rakho:  mail-config.php
+ c) mail-config.php Edit karo: 'pass' me mailbox ka password daalo (user/from me apna mailbox address). Save.
+ d) Form test karo -> sparshcarrybags@gmail.com par mail aani chahiye (Spam bhi dekho, pehli baar "Not spam" dabao).
+
+AGAR MAIL NA AAYE: public_html/_data/enquiries.log me har enquiry save hoti hai (customer ka data wahan milega),
+aur _data/mail-errors.log me error likha hota hai - wo mujhe bhej do.
+
+SECURITY CHECK: sparshcarrybags.in/_data/enquiries.log kholo -> "403 Forbidden" aana chahiye.

@@ -1,5 +1,5 @@
 import { siteConfig, whatsappDisplay, whatsappLink, mailLink } from "./config.js";
-import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3d2";
+import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3d7";
 import { SHOWCASE, SHOWCASE_ORDER } from "./showcase.js";
 import { bagSVG } from "./bags.js";
 import { initForm } from "./form.js";
@@ -170,7 +170,7 @@ function svgFallback() {
 async function init3D() {
   if (!hasWebGL()) return svgFallback();
   let m;
-  try { m = await import("./bag3d.js?v=3d2"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
+  try { m = await import("./bag3d.js?v=3d7"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
   const logo = await m.loadLogo(siteConfig.logoMark).catch(() => null);
   $(".stage-art")?.remove();
 
@@ -184,9 +184,9 @@ async function init3D() {
   // Bag Studio: starts when the section is near the viewport
   const studioWrap = $("#studioCanvas");
   if (studioWrap) {
-    const state = { type: "handle", paper: "kraft" };
-    let stage;
-    const spec = () => ({ ...state, logo });
+    const state = { type: "handle", paper: "kraft", logoScale: 0.58, logoY: 0.5, logoLabel: false, logoCustom: false };
+    let stage, userLogo = null, userLogoName = "";
+    const spec = () => ({ ...state, logo: userLogo || logo });
     const boot = () => {
       stage = new m.BagStage(studioWrap, { interactive: true, autoRotate: true });
       stage.setSpec(spec()); stage.start();
@@ -196,15 +196,49 @@ async function init3D() {
       io.observe(studioWrap);
     } else boot();
 
-    const label = { handle: "Paper Handle Bag", sos: "SOS Paper Bag", vbottom: "V-Bottom Paper Bag", boutique: "Boutique Paper Bag" };
+    const label = { handle: "Paper Handle Bag", shopping: "Large Shopping Bag", shoe: "Shoe Bag", jewellery: "Jewellery Bag", sos: "SOS Paper Bag", vbottom: "V-Bottom Paper Bag", boutique: "Boutique Paper Bag" };
     const paper = { kraft: "Natural Kraft", white: "Ivory White", forest: "Forest Green" };
     const cta = $("#studioCta");
     const refresh = () => {
       stage?.setSpec(spec());
-      cta.href = whatsappLink(`Hello ${siteConfig.brandName}, I would like to discuss a custom printed bag.\n\nBag type: ${label[state.type]}\nPaper look: ${paper[state.paper]}\nI will share my logo here.`);
+      cta.href = whatsappLink(`Hello ${siteConfig.brandName}, I would like to discuss a custom printed bag.\n\nBag type: ${label[state.type]}\nPaper look: ${paper[state.paper]}\n${userLogo ? "I previewed my own logo in the Bag Studio and will attach the logo file here." : "I will share my logo here."}`);
     };
     $$("input[name='studioType']").forEach((r) => r.addEventListener("change", () => { state.type = r.value; refresh(); }));
     $$("input[name='studioPaper']").forEach((r) => r.addEventListener("change", () => { state.paper = r.value; refresh(); }));
+    // ---- customer logo: read locally, never uploaded
+    const fileIn = $("#logoFile"), msg = $("#logoMsg"), tools = $("#logoTools"), reset = $("#logoReset"), btnText = $("#logoBtnText");
+    const defaultMsg = msg.textContent;
+    const say = (t, kind = "") => { msg.textContent = t; msg.className = "logo-msg " + kind; };
+    let raf = 0;
+    const later = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(refresh); };
+    fileIn.addEventListener("change", async () => {
+      const f = fileIn.files && fileIn.files[0];
+      if (!f) return;
+      if (!/^image\/(png|jpe?g|webp)$/.test(f.type)) { say("Please choose a PNG, JPG or WebP image.", "err"); fileIn.value = ""; return; }
+      if (f.size > 8 * 1024 * 1024) { say("This file is too large. Please use an image under 8 MB.", "err"); fileIn.value = ""; return; }
+      say("Placing your logo on the bag…");
+      try {
+        userLogo = await m.loadLogo(f);
+        userLogoName = f.name;
+        state.logoCustom = true;
+        state.logoLabel = false; $("#logoLabel").checked = false;
+        tools.hidden = false; reset.hidden = false; btnText.textContent = "Change logo";
+        say("Showing your logo on the bag. Turn it, resize it, or try another paper. This is a preview only; final printing is confirmed with you.", "ok");
+        refresh();
+        studioWrap.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      } catch (e) { say("We could not read this image. Please try another file.", "err"); }
+      fileIn.value = "";
+    });
+    reset.addEventListener("click", () => {
+      userLogo = null; state.logoCustom = false; state.logoLabel = false; state.logoScale = 0.58; state.logoY = 0.5;
+      $("#logoSize").value = 58; $("#logoY").value = 50; $("#logoLabel").checked = false;
+      tools.hidden = true; reset.hidden = true; btnText.textContent = "Upload your logo";
+      say(defaultMsg); refresh();
+    });
+    $("#logoSize").addEventListener("input", (e) => { state.logoScale = e.target.value / 100; later(); });
+    $("#logoY").addEventListener("input", (e) => { state.logoY = e.target.value / 100; later(); });
+    $("#logoLabel").addEventListener("change", (e) => { state.logoLabel = e.target.checked; refresh(); });
+
     $("#rotL").addEventListener("click", () => { if (stage) { stage.targetYaw -= 0.7; stage.lastInteract = performance.now(); stage.syncLoop(); } });
     $("#rotR").addEventListener("click", () => { if (stage) { stage.targetYaw += 0.7; stage.lastInteract = performance.now(); stage.syncLoop(); } });
     refresh();

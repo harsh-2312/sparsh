@@ -24,7 +24,10 @@ export const PAPERS = {
 export const BAG_TYPES = {
   handle:   { label: "Paper Handle Bag", W: 1.0,  H: 1.12, D: 0.46, handle: "rope",   crease: "flat", rise: 0.36 },
   sos:      { label: "SOS Paper Bag",    W: 0.74, H: 1.3,  D: 0.42, handle: null,     crease: "flat" },
-  vbottom:  { label: "V-Bottom Bag",     W: 0.68, H: 1.26, D: 0.34, handle: null,     crease: "v" },
+  vbottom:  { label: "V-Bottom Bag",     W: 0.64, H: 1.34, D: 0.22, handle: null,     crease: "v", pleat: 0.55 },
+  shopping: { label: "Large Shopping Bag", W: 1.3, H: 1.38, D: 0.52, handle: "rope",   crease: "flat", rise: 0.42 },
+  shoe:     { label: "Shoe Bag",         W: 1.22, H: 0.96, D: 0.5,  handle: "rope",    crease: "flat", rise: 0.34 },
+  jewellery:{ label: "Jewellery Bag",    W: 0.82, H: 1.0,  D: 0.3,  handle: "ribbon",  crease: "flat", rise: 0.3 },
   boutique: { label: "Boutique Bag",     W: 1.08, H: 0.9,  D: 0.42, handle: "ribbon", crease: "flat", rise: 0.3 },
 };
 
@@ -137,7 +140,14 @@ function printLogo(g, w, h, logo, paper, cfg) {
   if (lh > maxH) { lh = maxH; lw = (maxH * logo.width) / logo.height; }
   const x = (w - lw) / 2, y = h * (cfg.y ?? 0.5) - lh / 2;
   g.save();
-  if (paper.multiply) { g.globalCompositeOperation = "multiply"; g.globalAlpha = 0.95; g.drawImage(logo, x, y, lw, lh); }
+  if (cfg.label) {
+    const pad = Math.min(lw, lh) * 0.14, r = pad * 0.9, bx = x - pad, by = y - pad, bw = lw + pad * 2, bh = lh + pad * 2;
+    g.shadowColor = "rgba(30,16,4,.28)"; g.shadowBlur = 14; g.shadowOffsetY = 4;
+    g.fillStyle = "#FFFCF6";
+    g.beginPath(); g.moveTo(bx + r, by); g.arcTo(bx + bw, by, bx + bw, by + bh, r); g.arcTo(bx + bw, by + bh, bx, by + bh, r);
+    g.arcTo(bx, by + bh, bx, by, r); g.arcTo(bx, by, bx + bw, by, r); g.closePath(); g.fill();
+    g.shadowColor = "transparent"; g.drawImage(logo, x, y, lw, lh);
+  } else if (paper.multiply) { g.globalCompositeOperation = "multiply"; g.globalAlpha = 0.95; g.drawImage(logo, x, y, lw, lh); }
   else { g.globalAlpha = 0.97; g.drawImage(tinted(logo, paper.ink), x, y, lw, lh); }
   g.restore();
 }
@@ -234,7 +244,7 @@ export function buildBag(spec, aniso = 8) {
   }
   crease(fg, ch * 0.055, cw, 0.55);                         // top cuff fold
   const bumpC = makeCanvas(cw, ch); bumpC.getContext("2d").drawImage(front, 0, 0);
-  if (spec.logo) printLogo(fg, cw, ch, spec.logo, P, { scale: spec.logoScale ?? (spec.type === "boutique" ? 0.5 : 0.58), y: spec.logoY ?? 0.5 });
+  if (spec.logo) printLogo(fg, cw, ch, spec.logo, P, { scale: spec.logoScale ?? (spec.type === "boutique" ? 0.5 : 0.58), y: spec.logoY ?? 0.5, label: !!spec.logoLabel || (!P.multiply && !!spec.logoCustom) });
   if (spec.foil) { fg.strokeStyle = "rgba(215,174,112,.9)"; fg.lineWidth = 3; fg.strokeRect(cw * 0.07, ch * 0.08, cw * 0.86, ch * 0.78); }
   const frontMap = tex(front), bump = tex(bumpC, false);
   const mat = (map, b) => new THREE.MeshStandardMaterial({ map, bumpMap: b, bumpScale: 0.9, roughness: 0.93, metalness: 0 });
@@ -254,7 +264,7 @@ export function buildBag(spec, aniso = 8) {
   };
   addShell(panelGeom(W, H, D, bulge, false), frontMat);
   addShell(panelGeom(W, H, D, bulge, true), frontMat);
-  const sd = D * 0.2;
+  const sd = D * (T.pleat ?? 0.2);
   addShell(sideGeom(W, H, D, sd, 1), sideMat);
   addShell(sideGeom(W, H, D, sd, -1), sideMat);
 

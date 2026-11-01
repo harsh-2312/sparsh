@@ -1,0 +1,10 @@
+{
+  "name": "sparsh-carry-bags",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SPARSH Carry Bags marketing website (static HTML/CSS/JS)",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "serve": "npx --yes serve . -l 8080"
+  }
+}

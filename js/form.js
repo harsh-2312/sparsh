@@ -21,7 +21,31 @@ const rules = {
   },
 };
 
+function openThanks(d, message) {
+  const dlg = document.getElementById("thanksModal");
+  if (!dlg || typeof dlg.showModal !== "function") {
+    alert("Thank you! Your enquiry has been received. Our team will connect with you shortly.");
+    return;
+  }
+  document.getElementById("thanksName").textContent = d.name.split(/\s+/)[0];
+  const sum = document.getElementById("thanksSum");
+  sum.innerHTML = "";
+  [["Product", d.product], ["Quantity", d.quantity], ["Type", d.print]].forEach(([k, v]) => {
+    const li = document.createElement("li");
+    const sp = document.createElement("span");
+    sp.textContent = k + ": ";
+    li.append(sp, document.createTextNode(v));
+    sum.appendChild(li);
+  });
+  document.getElementById("thanksWa").href = whatsappLink(message);
+  dlg.showModal();
+}
+
 export function initForm() {
+  const dlg = document.getElementById("thanksModal");
+  if (dlg) {
+    dlg.addEventListener("click", (e) => { if (e.target === dlg || e.target.closest("[data-close]")) dlg.close(); });
+  }
   const form = document.getElementById("enquiryForm");
   if (!form) return;
   const select = form.elements.product;
@@ -34,8 +58,6 @@ export function initForm() {
     `<option value="">Select a product type</option>` +
     formProductTypes.map((n) => `<option value="${n}">${n}</option>`).join("");
 
-  // Email option only exists when a business email is configured.
-  if (!siteConfig.email) mailBtn.hidden = true;
 
   // Pre-select product when a card button is used (?product=…) — optional hook.
   document.addEventListener("sparsh:select-product", (e) => {
@@ -114,17 +136,19 @@ export function initForm() {
     status.focus({ preventScroll: false });
   }
 
-  /** Optional backend/CRM hook. No endpoint configured = nothing is sent. */
-  async function postToEndpoint(data) {
-    if (!siteConfig.formEndpoint) return null;
+  /** Sends the enquiry to send-enquiry.php (mails it to the business inbox). */
+  async function sendToServer(data) {
+    const url = siteConfig.formEndpoint;
+    if (!url) return { ok: false };
     try {
-      const res = await fetch(siteConfig.formEndpoint, {
+      const res = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source: "website", submittedAt: new Date().toISOString() }),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...data, website: form.elements.website ? form.elements.website.value : "" }),
       });
-      return res.ok;
-    } catch { return false; }
+      const json = await res.json().catch(() => ({}));
+      return { ok: res.ok && json.ok === true, error: json.error };
+    } catch { return { ok: false }; }
   }
 
   async function submit(channel) {
@@ -137,27 +161,34 @@ export function initForm() {
     const message = buildMessage(data);
     lock();
 
-    // Open the app first (synchronously) so browsers do not block the pop-up.
-    let opened = null;
     if (channel === "whatsapp") {
-      opened = window.open(whatsappLink(message), "_blank");
+      // Open the app first (synchronously) so browsers do not block the pop-up.
+      const opened = window.open(whatsappLink(message), "_blank");
       if (opened) opened.opener = null;
-    } else {
-      window.location.href = mailLink(`Bulk enquiry from ${data.company}`, message);
+      show(
+        "success",
+        `<strong>Almost done: WhatsApp should now be open with your enquiry ready.</strong> Your message has <u>not</u> been sent yet. Please press <strong>Send</strong> there to complete your enquiry. Nothing opened? <a href="${whatsappLink(message)}" target="_blank" rel="noopener">Open WhatsApp with your message</a>.`
+      );
+      return;
     }
 
-    const posted = await postToEndpoint(data);
-    const via = channel === "whatsapp" ? "WhatsApp" : "your email app";
-    const fallback = channel === "whatsapp"
-      ? ` Nothing opened? <a href="${whatsappLink(message)}" target="_blank" rel="noopener">Open WhatsApp with your message</a>.`
-      : "";
-    const stored = posted === true ? " A copy of your enquiry was also saved on our system." : posted === false ? " (We could not save a copy on our system, so please make sure you send the message.)" : "";
+    // Email: delivered by the server straight to the business inbox.
+    show("success", "<strong>Sending your enquiry…</strong>");
+    const r = await sendToServer(data);
+    if (r.ok) {
+      form.reset();
+      status.hidden = true;
+      openThanks(data, message);
+      return;
+    }
+    // Server could not send (offline, not uploaded yet…) -> open the email app as a backup.
+    window.location.href = mailLink(`Bulk enquiry from ${data.company}`, message);
     show(
-      "success",
-      `<strong>Almost done: ${via} should now be open with your enquiry ready.</strong> Your message has <u>not</u> been sent yet. Please press <strong>Send</strong> there to complete your enquiry.${fallback}${stored}`
+      "error",
+      `<strong>We could not send your enquiry automatically.</strong> Your email app should have opened with the enquiry ready; please press <strong>Send</strong> there. Or <a href="${whatsappLink(message)}" target="_blank" rel="noopener">send it on WhatsApp</a>.`
     );
   }
 
-  form.addEventListener("submit", (e) => { e.preventDefault(); submit("whatsapp"); });
-  mailBtn.addEventListener("click", () => submit("email"));
+  form.addEventListener("submit", (e) => { e.preventDefault(); submit("email"); });
+  waBtn.addEventListener("click", () => submit("whatsapp"));
 }

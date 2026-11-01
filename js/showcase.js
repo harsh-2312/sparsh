@@ -14,10 +14,10 @@ export const SHOWCASE = {
   "p-boutique":       { type: "boutique", paper: "forest", logo: true,  yaw: -0.5 },
   // Industries
   "i-bakery":         { type: "sos",      paper: "kraft",  logo: true,  yaw: -0.4 },
-  "i-fashion":        { type: "handle",   paper: "white",  logo: true,  yaw: 0.42 },
-  "i-jewellery":      { type: "boutique", paper: "forest", logo: true,  yaw: 0.5 },
+  "i-fashion":        { type: "shopping", paper: "white",  logo: true,  yaw: 0.42 },
+  "i-jewellery":      { type: "jewellery",paper: "forest", logo: true,  yaw: 0.5 },
   "i-cosmetics":      { type: "boutique", paper: "white",  logo: true,  yaw: -0.45 },
-  "i-retail":         { type: "handle",   paper: "kraft",  logo: true,  yaw: 0.38 },
+  "i-retail":         { type: "shopping", paper: "kraft",  logo: true,  yaw: 0.38 },
   "i-wholesale":      { type: "vbottom",  paper: "kraft",  logo: true,  yaw: -0.5 },
   // Story section
   "story":            { type: "handle",   paper: "kraft",  logo: true,  yaw: -0.85, pitch: 0.2 },
