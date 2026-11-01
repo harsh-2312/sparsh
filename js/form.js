@@ -1,5 +1,5 @@
-import { siteConfig, whatsappLink, mailLink } from "./config.js";
-import { formProductTypes } from "./content.js";
+import { siteConfig, whatsappLink, mailLink } from "./config.js?v=3dB";
+import { formProductTypes } from "./content.js?v=3dB";
 
 const LOCK_MS = 4000; // blocks accidental double clicks
 

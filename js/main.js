@@ -1,8 +1,8 @@
-import { siteConfig, whatsappDisplay, whatsappLink, mailLink } from "./config.js";
-import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3dA";
-import { SHOWCASE, SHOWCASE_ORDER } from "./showcase.js";
-import { bagSVG } from "./bags.js";
-import { initForm } from "./form.js";
+import { siteConfig, whatsappDisplay, whatsappLink, mailLink } from "./config.js?v=3dB";
+import { products, industries, valueProps, customSteps, orderSteps, faqs } from "./content.js?v=3dB";
+import { SHOWCASE, SHOWCASE_ORDER } from "./showcase.js?v=3dB";
+import { bagSVG } from "./bags.js?v=3dB";
+import { initForm } from "./form.js?v=3dB";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -170,7 +170,7 @@ function svgFallback() {
 async function init3D() {
   if (!hasWebGL()) return svgFallback();
   let m;
-  try { m = await import("./bag3d.js?v=3dA"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
+  try { m = await import("./bag3d.js?v=3dB"); } catch (e) { console.warn("3D engine unavailable", e); return svgFallback(); }
   const logo = await m.loadLogo(siteConfig.logoMark).catch(() => null);
   $(".stage-art")?.remove();
 
